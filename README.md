@@ -1,4 +1,4 @@
-# Personal Project - Ivan Sveshnikov
+# Personal Project - Ivan S
 
 I am an IB student currently in MYP5, and this is my Personal Project. 
 
