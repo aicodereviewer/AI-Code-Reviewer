@@ -1,4 +1,4 @@
-const theKey = "ћѓЕјњїђЕѢѝѡѢѝЕжЙИючпЩЭїднљяЩјѢѐгњѡжЭОѝяЙПчсѢачнсэЯЮОоёСНзОПюнбѠЩМЕчѕяззяМЬєѢмпазЮЙмЛЪєъѓЮвщбќоѝЯгеЪЭОмЮЩтЩПќпКЛОіЮёађПдќРжЩнчљЯлжСЕчЯёќЬќъргьзџаеѝайљЮѠбоЬёћйЪбіњѐћЩ";
+const theKey = "яћѓчѐОрјѝРёЙОдЯЪаСЮжѝежМпЯьѡъЛЮсњјьмЯьсьРѐѐѠСгээгЫЙъџтёж";
 
 function decryptKey(theKey) {
     return theKey
@@ -9,21 +9,21 @@ function decryptKey(theKey) {
 
 const apiKey = decryptKey(theKey);
 
+// Fetch AI response from the API
 async function getChatGPTResponse(prompt) {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-            model: "gpt-4o-mini",
+            model: "llama3-8b-8192",
             messages: [{ role: "user", content: prompt }],
         }),
     });
 
     if (!response.ok) {
-        // Extract detailed error information
         const errorData = await response.json();
         throw new Error(
             `Error ${response.status}: ${response.statusText}\n` +
@@ -35,22 +35,54 @@ async function getChatGPTResponse(prompt) {
     return data.choices[0].message.content;
 }
 
+// Send message and display response
 async function sendMessage() {
     const userInput = document.getElementById("user-input").value.trim();
     if (!userInput) return alert("Please enter a prompt.");
 
-    const chatResponse = document.getElementById("chat-response");
-    chatResponse.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
-    document.getElementById("user-input").value = "";
+    const markdownResponseDiv = document.getElementById("markdown-response");
+    const codeResponseDiv = document.getElementById("code-response");
+    markdownResponseDiv.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
+    codeResponseDiv.innerHTML = ""; // Clear previous code response
 
-    chatResponse.innerHTML += "<div><em>ChatGPT is typing...</em></div>";
     try {
         const response = await getChatGPTResponse(userInput);
-        chatResponse.innerHTML = chatResponse.innerHTML.replace("<em>ChatGPT is typing...</em>", "");
-        chatResponse.innerHTML += `<div><strong>ChatGPT:</strong> ${response}</div>`;
+
+        // Split code and markdown content
+        let codeContent = "";
+        let markdownContent = response.replace(/```([\s\S]*?)```/g, (match, code) => {
+            codeContent += `${code}\n\n`; // Append code to codeContent
+            return ""; // Remove code from markdownContent
+        });
+
+        // Convert markdown to HTML and sanitize
+        const markdownHTML = DOMPurify.sanitize(marked.parse(markdownContent));
+        markdownResponseDiv.innerHTML += `<div><strong>AI:</strong> ${markdownHTML}</div>`;
+
+        // Display code as plain text and sanitize
+        const sanitizedCodeContent = DOMPurify.sanitize(codeContent);
+        codeResponseDiv.innerHTML += `<pre><code class="language-javascript">${sanitizedCodeContent}</code></pre>`;
+
+        // Highlight the code after inserting it into the DOM
+        hljs.highlightAll();
     } catch (error) {
-        chatResponse.innerHTML = chatResponse.innerHTML.replace("<em>ChatGPT is typing...</em>", "");
-        chatResponse.innerHTML += `<div><strong>Error:</strong> ${error.message}</div>`;
+        markdownResponseDiv.innerHTML += `<div><strong>Error:</strong> ${error.message}</div>`;
     }
-    chatResponse.scrollTop = chatResponse.scrollHeight;
+
+    document.getElementById("user-input").value = "";
+    markdownResponseDiv.scrollTop = markdownResponseDiv.scrollHeight;
+    codeResponseDiv.scrollTop = codeResponseDiv.scrollHeight;
+}
+
+function toggleDarkMode() {
+    // Toggle the 'dark-mode' class on the body element
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('.chat-container').classList.toggle('dark-mode');
+    document.querySelector('textarea').classList.toggle('dark-mode');
+    document.querySelector('#chat-box').classList.toggle('dark-mode');
+    document.querySelector('#markdown-response').classList.toggle('dark-mode');
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.classList.toggle('dark-mode'));
+    const preElements = document.querySelectorAll('pre');
+    preElements.forEach(pre => pre.classList.toggle('dark-mode'));
 }
