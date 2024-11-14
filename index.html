@@ -7,21 +7,32 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
+    <!-- Include Highlight.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai.min.css">
+    <!-- Include Marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Include DOMPurify for sanitizing HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.4/dist/purify.min.js"></script>
+    <!-- Include Highlight.js for code syntax highlighting -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/highlight.min.js"></script>
 </head>
 <body>
     <div class="chat-container">
         <h1>AI Code Reviewer</h1>
         <div id="chat-box">
-            <div id="chat-response" class="response-box">
-                <!-- Responses will appear here -->
-            </div>
+            <!-- Response boxes for markdown and code -->
+            <div id="markdown-response" class="response-box"></div>
+            <div id="code-response" class="code-box"></div>
         </div>
         <textarea id="user-input" placeholder="Type your prompt here..."></textarea>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
         <button onclick="sendMessage()">Send</button>
     </div>
+    
     <div class="creditsareaforme">
         <p>This website was made fully by Ivan Sveshnikov, with the OpenAI API. <a href="https://github.com/aicodereviewer/AI-Code-Reviewer" target="_blank">Learn more</a></p>
-    </div>    
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
