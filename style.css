@@ -22,6 +22,20 @@ body {
     text-align: center;
 }
 
+.creditsareaforme {
+    position: fixed;
+    bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+
 #chat-box {
     height: 300px;
     overflow-y: auto;
