@@ -23,18 +23,6 @@ body {
     text-align: center;
 }
 
-.creditsareaforme {
-    position: fixed;
-    bottom: 10px;
-    font-size: 16px;
-    text-align: center;
-    color: #333;
-    padding: 10px;
-    background-color: #ffffff00;
-    border-radius: 10px;
-    z-index: 1000;
-}
-
 
 #chat-box {
     display: flex;
