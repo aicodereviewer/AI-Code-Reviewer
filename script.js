@@ -9,7 +9,7 @@ function decryptKey(theKey) {
 
 const apiKey = decryptKey(theKey);
 
-// Fetch AI response from the API
+// API Response part DO NOT TOUCH OR ELSE KAPUT
 async function getChatGPTResponse(prompt) {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
@@ -35,7 +35,7 @@ async function getChatGPTResponse(prompt) {
     return data.choices[0].message.content;
 }
 
-// Send message and display response
+// send message function + showing the response
 async function sendMessage() {
     const userInput = document.getElementById("user-input").value.trim();
     if (!userInput) return alert("Please enter a prompt.");
@@ -48,22 +48,22 @@ async function sendMessage() {
     try {
         const response = await getChatGPTResponse(userInput);
 
-        // Split code and markdown content
+        // oh god not this (code/text filter and separator)
         let codeContent = "";
         let markdownContent = response.replace(/```([\s\S]*?)```/g, (match, code) => {
-            codeContent += `${code}\n\n`; // Append code to codeContent
-            return ""; // Remove code from markdownContent
+            codeContent += `${code}\n\n`; 
+            return "";
         });
 
-        // Convert markdown to HTML and sanitize
+        // failed html autoembed protection
         const markdownHTML = DOMPurify.sanitize(marked.parse(markdownContent));
         markdownResponseDiv.innerHTML += `<div><strong>AI:</strong> ${markdownHTML}</div>`;
 
-        // Display code as plain text and sanitize
+        // code plain text aint working either
         const sanitizedCodeContent = DOMPurify.sanitize(codeContent);
         codeResponseDiv.innerHTML += `<pre><code class="language-javascript">${sanitizedCodeContent}</code></pre>`;
 
-        // Highlight the code after inserting it into the DOM
+        // highlight before dompurify just in case
         hljs.highlightAll();
     } catch (error) {
         markdownResponseDiv.innerHTML += `<div><strong>Error:</strong> ${error.message}</div>`;
@@ -75,7 +75,7 @@ async function sendMessage() {
 }
 
 function toggleDarkMode() {
-    // Toggle the 'dark-mode' class on the body element
+    // dark mode; my eyes can thank me later
     document.body.classList.toggle('dark-mode');
     document.querySelector('.chat-container').classList.toggle('dark-mode');
     document.querySelector('textarea').classList.toggle('dark-mode');
