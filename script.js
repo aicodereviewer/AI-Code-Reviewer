@@ -8,7 +8,6 @@ function decryptKey(theKey) {
 }
 
 const apiKey = decryptKey(theKey);
-
 // API Response part DO NOT TOUCH OR ELSE KAPUT
 async function getChatGPTResponse(prompt) {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
