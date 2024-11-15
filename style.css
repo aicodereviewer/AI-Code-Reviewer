@@ -39,7 +39,7 @@ body {
 #chat-box {
     display: flex;
     justify-content: space-between;
-    height: 500px;
+    height: 300px;
     overflow-y: auto;
     padding: 15px;
     background: #f9f9f9; /* Light background */
