@@ -112,13 +112,13 @@ button.dark-mode:hover {
     background-color: #333; /* Darker button on hover */
 }
 
-pre.dark-mode, pre code.dark-mode {
-    background-color: #222; /* Dark background for pre/code */
-    color: #f8f8f2; /* Light text */
+/* pre.dark-mode, pre code.dark-mode {
+    background-color: #222;
+    color: #f8f8f2; 
     border-radius: 5px;
     padding: 10px;
 }
-
+*/
 ::-webkit-scrollbar {
     width: 12px;
 }
