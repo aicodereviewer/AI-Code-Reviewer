@@ -3,7 +3,7 @@ const theKey = "яћѓчѐОрјѝРёЙОдЯЪаСЮжѝежМпЯьѡъЛЮс
 function decryptKey(theKey) {
     return theKey
         .split('')
-        .map(char => String.fromCharCode(char.charCodeAt(0) - ((Math.pow(10, 3) / 2) + (500 * 3) - (8000 / 8) - (2 ** 6) + Math.sqrt(1024))))
+        .map(char => String.fromCharCode(char.charCodeAt(0) - ((Math.pow(10, 3) / 2) + (500 * 3) - (8000 / 8) - (2 ** 5) + Math.sqrt(1024))))
         .join('');
 }
 
