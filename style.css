@@ -51,7 +51,7 @@ body {
 }
 
 .code-box {
-    background-color: #272822; /* Dark background, stays as is */
+    background-color: #2d2d2d; /* Dark background, stays as is */
     color: #f8f8f2; /* Light text on dark background */
     font-family: 'Courier New', monospace;
     white-space: pre-wrap;
