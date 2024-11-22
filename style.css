@@ -13,6 +13,19 @@ body {
     background-color: #f4f4f9; /* Light background */
 }
 
+:root {
+  --gradient: conic-gradient(
+    from 90deg at 50% 50%,
+    rgb(251, 55, 60),
+    rgba(252, 114, 28, 1),
+    rgba(255, 220, 0, 1),
+    rgba(27, 206, 255, 1),
+    rgba(42, 107, 255, 1),
+    rgba(217, 41, 255, 1),
+    rgba(255, 10, 92, 1)
+  );
+}
+
 .chat-container {
     width: 80%;
     max-width: 700px;
