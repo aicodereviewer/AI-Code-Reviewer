@@ -22,14 +22,6 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
 
-    --start: 0;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 10px;
-
   background-color: #040404;
   border-radius: 14px;
   transition: border-color 0.3s ease-in-out;
