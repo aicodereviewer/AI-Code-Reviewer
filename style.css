@@ -13,56 +13,28 @@ body {
     background-color: #f4f4f9; /* Light background */
 }
 
-:root {
-  --gradient: conic-gradient(
-    from 90deg at 50% 50%,
-    rgb(251, 55, 60),
-    rgba(252, 114, 28, 1),
-    rgba(255, 220, 0, 1),
-    rgba(27, 206, 255, 1),
-    rgba(42, 107, 255, 1),
-    rgba(217, 41, 255, 1),
-    rgba(255, 10, 92, 1)
-  );
-}
-
 .chat-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
     width: 80%;
     max-width: 700px;
-    margin: 10px;
+    background-color: #fff; /* Light background */
     padding: 20px;
-    background-color: #040404; /* Dark background */
-    border-radius: 14px;
-    transition: border-color 0.3s ease-in-out;
+    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    --start: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 10px;
+
+  background-color: #040404;
+  border-radius: 14px;
+  transition: border-color 0.3s ease-in-out;
 }
 
-/* Gradient effect for .chat-container */
-.chat-container::before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 14px;
-    border: 2px solid transparent;
-    background: var(--gradient);
-    background-attachment: fixed;
-    mask: linear-gradient(#0000, #0000), conic-gradient(from calc((
-                var(--start) - (20 * 1.1)
-              ) * 1deg), #ffffff1f 0deg, white, #ffffff00 100deg);
-    mask-composite: intersect;
-    mask-clip: padding-box, border-box;
-    opacity: 0;
-    transition: 0.5s ease;
-}
 
 #chat-box {
     display: flex;
@@ -152,6 +124,26 @@ button.dark-mode:hover {
     background-color: #333; /* Darker button on hover */
 }
 
+/* pre.dark-mode, pre code.dark-mode {
+    background-color: #222;
+    color: #f8f8f2; 
+    border-radius: 5px;
+    padding: 10px;
+}
+*/
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #444; /* Dark scrollbar */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2d2d2d00; /* Transparent track */
+}
+
 /* Button styles */
 button {
     padding: 10px 20px;
@@ -175,17 +167,4 @@ body.dark-mode h1 {
 
 body.dark-mode p {
     color: #fff; /* Change text color to white for dark mode */
-}
-
-::-webkit-scrollbar {
-    width: 12px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #444; /* Dark scrollbar */
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #2d2d2d00; /* Transparent track */
 }
