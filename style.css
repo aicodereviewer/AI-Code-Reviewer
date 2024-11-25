@@ -110,7 +110,7 @@ textarea {
 
 /* Dark Mode Styles (override for light parts) */
 body.dark-mode {
-    background-color: #121212; /* Dark background */
+    background-color: #120000; /* Dark background */
 }
 
 .chat-container.dark-mode {
