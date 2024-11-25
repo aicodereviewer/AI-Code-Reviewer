@@ -116,3 +116,4 @@ document.addEventListener('mousemove', (e) => {
     wrapper.style.setProperty('--mouse-x', `${x}px`);
     wrapper.style.setProperty('--mouse-y', `${y}px`);
 });
+
