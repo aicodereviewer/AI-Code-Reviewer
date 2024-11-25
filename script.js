@@ -76,12 +76,43 @@ async function sendMessage() {
 function toggleDarkMode() {
     // dark mode; my eyes can thank me later
     document.body.classList.toggle('dark-mode');
+    document.querySelector('.wrapper').classList.toggle('dark-mode');
     document.querySelector('.chat-container').classList.toggle('dark-mode');
     document.querySelector('textarea').classList.toggle('dark-mode');
     document.querySelector('#chat-box').classList.toggle('dark-mode');
-    document.querySelector('#markdown-response').classList.toggle('dark-mode');
+    document.querySelector('.response-box').classList.toggle('dark-mode');
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.classList.toggle('dark-mode'));
     const preElements = document.querySelectorAll('pre');
     preElements.forEach(pre => pre.classList.toggle('dark-mode'));
 }
+
+const chatContainer = document.querySelector('.chat-container');
+
+chatContainer.addEventListener('mousemove', (event) => {
+    const rect = chatContainer.getBoundingClientRect();
+    const distanceX = Math.min(Math.abs(event.clientX - rect.left), Math.abs(event.clientX - rect.right));
+    const distanceY = Math.min(Math.abs(event.clientY - rect.top), Math.abs(event.clientY - rect.bottom));
+    const distance = Math.min(distanceX, distanceY);
+
+    // When the mouse is within a certain distance (e.g., 50px), trigger the effect
+    if (distance < 50) {
+        chatContainer.classList.add('mouse-near');
+    } else {
+        chatContainer.classList.remove('mouse-near');
+    }
+});
+
+// Listen for mouse movement and update CSS variables
+document.addEventListener('mousemove', (e) => {
+    const wrapper = document.querySelector('.wrapper');
+
+    // Calculate mouse position relative to the wrapper
+    const rect = wrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Update CSS variables for gradient position
+    wrapper.style.setProperty('--mouse-x', `${x}px`);
+    wrapper.style.setProperty('--mouse-y', `${y}px`);
+});
