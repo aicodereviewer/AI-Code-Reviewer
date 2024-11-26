@@ -21,8 +21,12 @@ body {
     border-radius: 14.5px;
     margin: 15px;
     overflow: hidden; /* Ensure the gradient doesn't spill outside */
+    transition: transform 0.2s ease-in-out;
 }
 
+.wrapper.clicked {
+    transform: scale(0.98); /* Scale down slightly */
+}
 /* Add radial gradient using ::before */
 .wrapper::before {
     content: '';
