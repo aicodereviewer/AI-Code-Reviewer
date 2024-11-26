@@ -3,14 +3,13 @@
     font-family: Arial, 'Courier New', monospace;
 }
 
-/* Default Light Mode Styles */
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     min-height: 100vh;
     margin: 0;
-    background-color: #f4f4f9; /* Light background */
+    background-color: #f4f4f9;
 }
 
 /* Wrapper styling */
