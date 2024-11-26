@@ -39,6 +39,10 @@ async function sendMessage() {
     const userInput = document.getElementById("user-input").value.trim();
     if (!userInput) return alert("Please enter a prompt.");
 
+    const menu = document.querySelector('.wrapper');
+    menu.classList.add('clicked');
+    setTimeout(() => menu.classList.remove('clicked'), 200);
+
     const markdownResponseDiv = document.getElementById("markdown-response");
     const codeResponseDiv = document.getElementById("code-response");
     markdownResponseDiv.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
@@ -85,6 +89,11 @@ function toggleDarkMode() {
     buttons.forEach(button => button.classList.toggle('dark-mode'));
     const preElements = document.querySelectorAll('pre');
     preElements.forEach(pre => pre.classList.toggle('dark-mode'));
+
+    const menu = document.querySelector('.wrapper');
+    menu.classList.add('clicked');
+    setTimeout(() => menu.classList.remove('clicked'), 200); 
+
 }
 
 const chatContainer = document.querySelector('.chat-container');
@@ -117,3 +126,11 @@ document.addEventListener('mousemove', (e) => {
     wrapper.style.setProperty('--mouse-y', `${y}px`);
 });
 
+document.querySelector('.chat-container').addEventListener('click', (event) => {
+    // Check if the clicked element is not a button or a textarea
+    if (event.target.tagName !== 'BUTTON' && event.target.tagName !== 'TEXTAREA') {
+        const wrapper = document.querySelector('.wrapper');
+        wrapper.classList.add('clicked'); // Add the shrink effect
+        setTimeout(() => wrapper.classList.remove('clicked'), 200); 
+    }
+});
