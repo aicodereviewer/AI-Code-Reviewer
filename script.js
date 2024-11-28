@@ -1,5 +1,7 @@
 const theKey = "яћѓчѐОрјѝРёЙОдЯЪаСЮжѝежМпЯьѡъЛЮсњјьмЯьсьРѐѐѠСгээгЫЙъџтёж";
 
+//do not memorize please this is private information
+
 function decryptKey(theKey) {
     return theKey
         .split('')
@@ -104,7 +106,7 @@ chatContainer.addEventListener('mousemove', (event) => {
     const distanceY = Math.min(Math.abs(event.clientY - rect.top), Math.abs(event.clientY - rect.bottom));
     const distance = Math.min(distanceX, distanceY);
 
-    // When the mouse is within a certain distance (e.g., 50px), trigger the effect
+    // when the mouse is within a certain distance, trigger the effect
     if (distance < 50) {
         chatContainer.classList.add('mouse-near');
     } else {
@@ -112,22 +114,21 @@ chatContainer.addEventListener('mousemove', (event) => {
     }
 });
 
-// Listen for mouse movement and update CSS variables
+// listen for mouse movement
 document.addEventListener('mousemove', (e) => {
     const wrapper = document.querySelector('.wrapper');
 
-    // Calculate mouse position relative to the wrapper
+    // mouse position calculation
     const rect = wrapper.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // Update CSS variables for gradient position
     wrapper.style.setProperty('--mouse-x', `${x}px`);
     wrapper.style.setProperty('--mouse-y', `${y}px`);
 });
 
+//fire ahh resizing animatons
 document.querySelector('.chat-container').addEventListener('click', (event) => {
-    // Check if the clicked element is not a button or a textarea
     if (event.target.tagName !== 'BUTTON' && event.target.tagName !== 'TEXTAREA') {
         const wrapper = document.querySelector('.wrapper');
         wrapper.classList.add('clicked'); // Add the shrink effect
